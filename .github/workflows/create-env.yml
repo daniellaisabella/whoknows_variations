@@ -1,0 +1,21 @@
+name: Create .env file
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create .env file
+        run: |
+          echo "SECRET_KEY=${{ secrets.ENV_SECRET_KEY }}" >> .env
+          echo "DATABASE_PATH=${{ secrets.ENV_DATABASE_PATH }}" >> .env
+          echo "FLASK_ENV=production" >> .env
+          echo "FLASK_DEBUG=False" >> .env

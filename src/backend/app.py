@@ -1,4 +1,6 @@
+from dotenv import load_dotenv
 import os
+load_dotenv()
 import sys
 import sqlite3
 import hashlib
@@ -10,10 +12,10 @@ from flask import Flask, request, session, url_for, redirect, render_template, g
 # Configuration
 ################################################################################
 
-DATABASE_PATH = '/tmp/whoknows.db'
+DATABASE_PATH = os.getenv("DATABASE_PATH")
 PER_PAGE = 30
 DEBUG = False
-SECRET_KEY = 'development key'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 app = Flask(__name__)
 
